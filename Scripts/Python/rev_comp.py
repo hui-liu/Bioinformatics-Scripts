@@ -1,4 +1,5 @@
 import sys
+"""python rev_comp.py input.fa out.fa"""
 
 complement_table = {
 'A': 'T',
