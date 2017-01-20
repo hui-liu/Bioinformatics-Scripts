@@ -1,2 +1,2 @@
 # Bioinformatics-Scripts
-A collection of custom Python/perl/linux shell scripts for bioinformatics research.
+A collection of custom python/perl/linux shell scripts for bioinformatics research.
