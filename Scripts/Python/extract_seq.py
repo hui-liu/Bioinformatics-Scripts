@@ -1,3 +1,10 @@
+
+#!/usr/bin/python
+#Filename: extract_seq.py
+#Author: liuhui
+#EMail: liuhui@bjfu.edu.cn	
+#Description: extract a pair of sequences from two input fasta files based on a pair of name list
+
 import os
 import sys
 from Bio import SeqIO
