@@ -1,4 +1,3 @@
-
 #!/usr/bin/python
 #Filename: extract_seq.py
 #Author: liuhui
