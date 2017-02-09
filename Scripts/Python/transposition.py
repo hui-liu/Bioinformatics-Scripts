@@ -1,3 +1,9 @@
+#!/usr/bin/python
+#Filename: rev_comp.py
+#Author: liuhui
+#EMail: liuhui@bjfu.edu.cn
+#Description:
+
 import sys
 """python transposition.py input output
 Row to Column Transposition (转置)"""
