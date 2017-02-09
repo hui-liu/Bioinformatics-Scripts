@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#Filename: rev_comp.py
+#Filename: transposition.py
 #Author: liuhui
 #EMail: liuhui@bjfu.edu.cn
 #Description:
