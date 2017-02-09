@@ -1,3 +1,9 @@
+#!/usr/bin/python
+#Filename: rev_comp.py
+#Author: liuhui
+#EMail: liuhui@bjfu.edu.cn
+#Description: generate the reverse complementary strand
+
 import sys
 """python rev_comp.py input.fa out.fa"""
 
