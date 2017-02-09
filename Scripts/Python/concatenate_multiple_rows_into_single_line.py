@@ -1,3 +1,9 @@
+#!/usr/bin/python
+#Filename: concatenate_multiple_rows_into_single_line.py
+#Author: liuhui
+#EMail: liuhui@bjfu.edu.cn	
+#Description: concatenate multiple rows into single line
+
 #TRINITY_GG_428_c0_g1_i1_orf1 PF13499.1 EF_hand_5
 #TRINITY_GG_428_c0_g1_i1_orf1 PF00036.27 efhand
 #TRINITY_GG_428_c0_g1_i1_orf1 PF13405.1 EF_hand_4
