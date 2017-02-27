@@ -1,12 +1,12 @@
 #!/usr/bin/python
-#Filename: imputation_data_convert.py
+#Filename: transposition_v2.py
 #Author: liuhui
 #EMail: liuhui@bjfu.edu.cn
-#Description:
+#Description: row to line
 
 import sys
 
-USAGE = "usage: python transposition.py inputfile outfile"
+USAGE = "usage: python transposition_v2.py inputfile outfile"
 
 if len(sys.argv) !=3:
     print USAGE
