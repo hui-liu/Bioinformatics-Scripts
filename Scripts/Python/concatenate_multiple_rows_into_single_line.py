@@ -4,6 +4,7 @@
 #EMail: liuhui@bjfu.edu.cn	
 #Description: concatenate multiple rows into single line
 #Usage: python concatenate_multiple_rows_into_single_line.py inputfile outputfile
+import sys
 
 #TRINITY_GG_428_c0_g1_i1_orf1 PF13499.1 EF_hand_5
 #TRINITY_GG_428_c0_g1_i1_orf1 PF00036.27 efhand
@@ -18,7 +19,7 @@
 import re
 
 out_lines = []
-with open('file.txt', 'r') as f:
+with open(sys.argv[1], 'r') as f:
     key = None
     key_lines = []
     for line in f:
@@ -35,5 +36,5 @@ with open('file.txt', 'r') as f:
         if key:
             out_lines.append('{0} {1}'.format(key, ' | '.join(key_lines)))
 
-with open('out.txt', 'w') as f:
+with open(sys.argv[2], 'w') as f:
     f.write('\n'.join(out_lines) + "\n")
