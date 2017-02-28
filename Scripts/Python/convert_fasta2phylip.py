@@ -30,9 +30,8 @@ for gene in sequence_dict:
         alignment_length = len(sequence_dict[gene])
 
 number_of_seq = len(sequence_dict)
-
-longest_id = sorted(sequence_dict.keys())[-1]
-
+#longest_id = sorted(sequence_dict.keys())[-1]
+longest_id = sorted(sequence_dict.keys(), key = lambda k: len(k))[-1]
 # Write alignment in Phylip format
 phyfile = open(outfile, "w")
 phyfile.write(str(number_of_seq)+" "+str(alignment_length)+"\n")
