@@ -33,7 +33,7 @@ for rec in SeqIO.parse(open(sys.argv[1]), 'fasta'):
     for c in range(len(rec.seq) / 3):
         id_seq[rec.id].append(str(rec.seq)[count : count + 3])
         count += 3
-print id_lis
+        
 # the number of codons = (cds sequences length / 3)
 length = len(id_seq.values()[0])
 
