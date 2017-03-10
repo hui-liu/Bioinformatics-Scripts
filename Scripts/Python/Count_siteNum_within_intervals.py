@@ -22,11 +22,9 @@ for eachline in IN1:
     split=eachline.rstrip().split()
     snp.setdefault(split[0],[]).append(split[1])
 #
-gene_list = [] # all gene list
 temp_list = []
 for line in IN2:
     l = line.split()
-    gene_list.append(l[0])
     temp_list.append(l)
 
 # sort the temp_list with the start of region
@@ -46,7 +44,8 @@ while index < len(bin_list):
         elif locateBin(int(el[2]), int(el[3]), int(site)):
             num += 1
         else:
-            count_list.append([el[0], num]) 
+#            count_list.append([el[0], num]) 
+            count_list.append(el + [num]) 
             break
     if not len(snp[el[1]]): break
     index += 1
@@ -57,13 +56,12 @@ for l in count_list:
     lis.append(l[0])
 
 # if genes did not represent in the count_list, then append them into the count_list
-for gene in gene_list:
-    if gene not in lis:
-        count_list.append([gene, 0])
-
+for gene in bin_list:
+    if gene[0] not in lis:
+        count_list.append(gene + [0])
 #
 for line in count_list:
-    OUT.write("%s\t%s\n" % (line[0], line[1]))
+    OUT.write("%s\t%d\n" % ("\t".join(line[:4]), line[4]))
 
 IN1.close()
 IN2.close()
