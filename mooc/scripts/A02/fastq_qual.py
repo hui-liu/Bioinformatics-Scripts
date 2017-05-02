@@ -3,12 +3,13 @@
 ########
 import sys
 import matplotlib.pyplot as plt
+import gzip
 
 # (1)
 def readFastq(filename):
     sequences = []
     qualities = []
-    with open(filename) as fh:
+    with gzip.open(filename, 'r') as fh:
         while True:
             fh.readline()
             seq = fh.readline().rstrip()
@@ -21,7 +22,7 @@ def readFastq(filename):
     return sequences, qualities
 
 # run
-			
+
 seqs, quals = readFastq(sys.argv[1])
 
 # (2)
@@ -29,16 +30,16 @@ def phred33ToQ(qual):
     return ord(qual) - 33
 
 def creatHist(qualities):
-    hist = [0] * 50
-	for qual in qualities:
+    hist = [0] * 42
+    for qual in qualities:
         for phred in qual:
             q= phred33ToQ(phred)
             hist[q] += 1
-	return hist
+    return hist
 
 h = creatHist(quals)
 print h
 
 # (3)
 plt.bar(range(len(h)), h)
-plt.show()
+plt.savefig(sys.argv[1].split('.gz')[0] + ".png")
