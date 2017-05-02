@@ -39,7 +39,7 @@ def findGCByPos(reads):
 # run
 seqs, quals = readFastq(sys.argv[1])
 gc = findGCByPos(seqs)
-plt.plot(range(len(gc), gc))
+plt.plot(range(len(gc)), gc)
 plt.show()
 
 # (2)
