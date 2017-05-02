@@ -12,7 +12,7 @@ def readGenome(filename):
                 genome += line.rstrip()
     return genome
 # run
-genome = readGenome(sys.argv[1], 'r')
+genome = readGenome(sys.argv[1])
 #print genome[:100]
 print len(genome)
 
