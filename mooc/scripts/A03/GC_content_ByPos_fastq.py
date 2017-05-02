@@ -1,6 +1,15 @@
 ########
 # A03
 ########
+
+"""
+GC content is different from species to species, different species will have
+different characteristics GC contents.
+We just using GC content as a way of trying to figure out whether the mix of
+different bases is changing as we move along read. We expect that it won't
+change very much.
+"""
+
 import collections
 import sys
 import matplotlib.pyplot as plt
