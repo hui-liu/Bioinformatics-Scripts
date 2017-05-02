@@ -1,6 +1,8 @@
 ########
 # A01
 ########
+import collections
+import sys
 # (1) the size of genome
 def readGenome(filename):
     genome=''
@@ -10,7 +12,7 @@ def readGenome(filename):
                 genome += line.rstrip()
     return genome
 # run
-genome = readGenome('genome.fasta')
+genome = readGenome(sys.argv[1], 'r')
 #print genome[:100]
 print len(genome)
 
@@ -22,6 +24,5 @@ for base in genome:
 print counts
 
 # method 2
-import collections
 counts = collections.Counter(genome)
 print counts
