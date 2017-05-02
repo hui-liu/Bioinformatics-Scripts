@@ -34,25 +34,19 @@ def readFastq(filename):
 def findGCByPos(reads):
     gc = [0] * 101 # the length of reads
     totals = [0] * 101
-	
+
     for read in reads:
-	      for i in range(len(read)):
-		        if read[i] == 'C' or read[i] == 'G':
-			          gc[i] += 1
-		        totals[i] += 1
-		
+              for i in range(len(read)):
+                        if read[i] == 'C' or read[i] == 'G':
+                                  gc[i] += 1
+                        totals[i] += 1
+
     for i in range(len(gc)):
-		    if totals[i] > 0:
-		        gc[i] /= float(totals[i])
+                    if totals[i] > 0:
+                        gc[i] /= float(totals[i])
     return gc
 # run
 seqs, quals = readFastq(sys.argv[1])
 gc = findGCByPos(seqs)
-plt.plot(range(len(gc)), gc)
-plt.show()
-
-# (2)
-count = collections.Counter()
-for seq in seqs:
-    count.update(seq)
-print count
+plt.plot(range(1, len(gc) + 1), gc)
+plt.savefig(sys.argv[1].split('.gz')[0] + "_GC.png")
