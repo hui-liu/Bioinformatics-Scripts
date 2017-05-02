@@ -9,8 +9,8 @@ def readGenome(filename):
     genome=''
     with open (filename,'r') as f:
         for line in f:
-	    if not line[0]=='>':
-                genome += line.rstrip()
+            if not line[0]=='>':
+                 genome += line.rstrip()
     return genome
 # run
 genome = readGenome(sys.argv[1])
@@ -20,10 +20,10 @@ def naive(p, t):
     occurrences = []
     for i in range(len(t) - len(p) + 1):
         match = True
-	for j in range(len(p)):
-	     if not t[i+j] == p[j]:
-                 match = False
-                 break
+        for j in range(len(p)):
+            if not t[i+j] == p[j]:
+                match = False
+                break
         if match:
             occurrences.append(i)
     return occurrences
@@ -37,7 +37,9 @@ def generateReads(genome, numReads, readLen):
         reads.append(genome[start : start+readLen])
     return reads
 # run
+
 reads = generateReads(genome, 100, 100)
+numMatched = 0
 for r in reads:
     matches = naive(r, genome)
     if len(matches) > 0:
