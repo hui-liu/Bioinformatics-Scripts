@@ -1,8 +1,10 @@
 import sys
+import os
 
 # usage
 USAGE ="\nTHis python script Convert raw feature counts generated from *featureCounts* to transcripts per million (TPM). \
-        \n\nExample usage: python %s [featureCount result file] [output file]\n\n" % sys.argv[0]
+        \n\nExample usage: python %s [featureCount result file] [output file]\n\n" % os.path.basename(sys.argv[0])
+
 
 if len(sys.argv) != 3:
     print USAGE
