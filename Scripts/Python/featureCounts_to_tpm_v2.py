@@ -3,7 +3,7 @@ import os
 
 # example input data
 """
-# Program:featureCounts v1.5.3; Command:"featureCounts" "-p" "-Q" "10" "-t" "exon" "-g" "gene_id" "-s" "0" "-T" "10" "-a" "../ma
+# Program:featureCounts v1.5.3; Command:"featureCounts" "-p" "-Q" "10" "-t" "exon" "-g" "gene_id" "-s" "0" "-T" "10" "-a" "../mapping/illumina/test/pta.gtf" "-o" "read.counts" "../mapping/illumina/SRR1200298_sort.bam" "../mapping/illumina/SRR1200343_sort.bam"
 Geneid  Chr     Start   End     Strand  Length  ../mapping/illumina/SRR1200298_sort.bam ../mapping/illumina/SRR1200343_sort.bam
 PTA00000014     C27702832       281     363     -       83      0       0
 PTA00000015     C32554308       14858   16516   +       1659    0       0
