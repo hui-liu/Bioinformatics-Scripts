@@ -10,6 +10,7 @@ output:
 percent_match is computed by counting the length of the shorter sequence (query or subject) and dividing by the length of *that shorter sequence*
 """
 
+
 def splitEvalue(string):
     mant = None
     exp = None
@@ -36,14 +37,16 @@ for line in IN:
     lsplit = line.split()
     if lsplit[0] == lsplit[2]: continue
     qlen, slen = int(lsplit[1]), int(lsplit[3])
+    qstar, qend = [int(lsplit[10]), int(lsplit[11])] if int(lsplit[10]) < int(lsplit[11]) else [int(lsplit[11]), int(lsplit[10])]
+    sstar, send = [int(lsplit[12]), int(lsplit[13])] if int(lsplit[12]) < int(lsplit[13]) else [int(lsplit[13]), int(lsplit[12])]
     mant, exp = splitEvalue(lsplit[14])
     pident = str(Decimal(lsplit[5]).quantize(Decimal('0.0')))
     if qlen >= slen:
-        match = int(lsplit[13]) - int(lsplit[12]) + 1
+        match = send - sstar + 1
         percent_match = str(Decimal(str(match / float(slen) * 100)).quantize(Decimal('0.0')))
         OUT.write("\t".join([lsplit[0], lsplit[2], lsplit[0].split("|")[0], lsplit[2].split("|")[0], mant, exp, formatDigit(pident), formatDigit(percent_match)]) + "\n")
     else:
-        match = int(lsplit[11]) - int(lsplit[10]) + 1
+        match = qend - qstar + 1
         percent_match = str(Decimal(str(match / float(qlen) * 100)).quantize(Decimal('0.0')))
         OUT.write("\t".join([lsplit[0], lsplit[2], lsplit[0].split("|")[0], lsplit[2].split("|")[0], mant, exp, formatDigit(pident), formatDigit(percent_match)]) + "\n")
 
