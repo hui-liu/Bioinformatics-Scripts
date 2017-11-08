@@ -37,7 +37,7 @@ OUT = open(sys.argv[2], 'w')
 for line in IN:
     lsplit = line.split()
     pident = str(Decimal(lsplit[5]).quantize(Decimal('0.0')))
-    if pident < ident_cutoff:
+    if float(pident) < ident_cutoff:
         continue
     else:
         qlen, slen = int(lsplit[1]), int(lsplit[3])
@@ -47,14 +47,14 @@ for line in IN:
         if qlen >= slen:
             match = send - sstar + 1
             percent_match = str(Decimal(str(match / float(slen) * 100)).quantize(Decimal('0.0')))
-            if percent_match < conve_cutoff:
+            if float(percent_match) < conve_cutoff:
                 continue
             else:
                 OUT.write("\t".join([lsplit[0], lsplit[2], lsplit[0].split("|")[0], lsplit[2].split("|")[0], mant, exp, formatDigit(pident), formatDigit(percent_match)]) + "\n")
         else:
             match = qend - qstar + 1
             percent_match = str(Decimal(str(match / float(qlen) * 100)).quantize(Decimal('0.0')))
-            if percent_match < conve_cutoff:
+            if float(percent_match) < conve_cutoff:
                 continue
             else:
                 OUT.write("\t".join([lsplit[0], lsplit[2], lsplit[0].split("|")[0], lsplit[2].split("|")[0], mant, exp, formatDigit(pident), formatDigit(percent_match)]) + "\n")
