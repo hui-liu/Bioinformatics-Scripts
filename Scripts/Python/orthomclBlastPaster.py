@@ -5,7 +5,7 @@ from decimal import Decimal
 input:
     qseqid qlen sseqid slen frames pident nident length mismatch gapopen qstart qend sstart send evalue bitscore
 output:
-    qseqid sseqid q_txon s_taxon evlaue_mant evalue_exp pident percent_match
+    qseqid sseqid q_taxon s_taxon evlaue_mant evalue_exp pident percent_match
 
 percent_match is computed by counting the length of the shorter sequence (query or subject) and dividing by the length of *that shorter sequence*
 """
