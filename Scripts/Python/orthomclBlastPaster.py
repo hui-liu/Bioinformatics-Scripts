@@ -35,7 +35,6 @@ OUT = open(sys.argv[2], 'w')
 
 for line in IN:
     lsplit = line.split()
-    if lsplit[0] == lsplit[2]: continue
     qlen, slen = int(lsplit[1]), int(lsplit[3])
     qstar, qend = [int(lsplit[10]), int(lsplit[11])] if int(lsplit[10]) < int(lsplit[11]) else [int(lsplit[11]), int(lsplit[10])]
     sstar, send = [int(lsplit[12]), int(lsplit[13])] if int(lsplit[12]) < int(lsplit[13]) else [int(lsplit[13]), int(lsplit[12])]
