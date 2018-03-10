@@ -4,7 +4,7 @@ A collection of custom python/perl/linux shell scripts for bioinformatics resear
 
 ###################
 # bioinformatics blogs
-# (DAVE TANG'S BLOG)
+#### DAVE TANG'S BLOG
 https://davetang.org/muse/
 
 ...
