@@ -2,7 +2,7 @@ import sys
 from cyvcf2 import VCF
 import numpy as np
 import gzip
-# Author: liuhui@bjfu.edu.cn
+# Author: Hui Liu, liuhui@bjfu.edu.cn
 
 """
 citation:
