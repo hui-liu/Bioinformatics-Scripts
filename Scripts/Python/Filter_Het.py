@@ -26,14 +26,15 @@ for line in gzip.open(inFile, 'r'):
 vcf = VCF(inFile)
 for variant in vcf:
     HetGenos = 0
-    TotGeno = 0
-    if variant.is_indel: continue
+    TotGenos = 0
+    if variant.is_indel:
+        print str(variant).rstrip("\n")
     # gt_types is array of 0,1,2,3==HOM_REF, HET, UNKNOWN, HOM_ALT
     HetGenos = np.sum(variant.gt_types == 1)
-    TotGeno = np.sum(variant.gt_types != 2)
-    if TotGeno == 0:
+    TotGenos = np.sum(variant.gt_types != 2)
+    if TotGenos == 0:
         print str(variant).rstrip("\n")
     else:
-        HetRate = HetGenos / float(TotGeno)
+        HetRate = HetGenos / float(TotGenos)
         if HetRate <= HetThreshod:
             print str(variant).rstrip("\n")
