@@ -5,6 +5,7 @@ import gzip
 # Author: Hui Liu, liuhui@bjfu.edu.cn
 
 """
+citation
 cyvcf2: fast, flexible variant analysis with Python
 """
 
