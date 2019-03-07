@@ -12,9 +12,9 @@ cyvcf2: fast, flexible variant analysis with Python
 inFile = sys.argv[1]
 cutoff = float(sys.argv[2])
 
-TetThreshod = 0.7
-if TetThreshod != cutoff:
-    TetThreshod = cutoff
+HetThreshod = 0.7
+if HetThreshod != cutoff:
+    HetThreshod = cutoff
 
 # header
 for line in gzip.open(inFile, 'r'):
@@ -35,5 +35,5 @@ for variant in vcf:
         print str(variant).rstrip("\n")
     else:
         HetRate = HetGenos / float(TotGeno)
-        if HetRate <= TetThreshod:
+        if HetRate <= HetThreshod:
             print str(variant).rstrip("\n")
