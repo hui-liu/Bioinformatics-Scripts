@@ -35,5 +35,5 @@ for variant in vcf:
         print str(variant).rstrip("\n")
     else:
         HetRate = HetGenos / float(TotGeno)
-        if HetRate > TetThreshod:
+        if HetRate <= TetThreshod:
             print str(variant).rstrip("\n")
