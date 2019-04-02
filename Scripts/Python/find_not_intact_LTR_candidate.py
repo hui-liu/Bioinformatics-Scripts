@@ -42,8 +42,8 @@ with open(sys.argv[1], 'r') as f:
         if int(sstart) > int(send):
             sstart, send = send, sstart
             strand = "-"
-        qchrom = qseqid.split("_chr")
-        qgstart, qgend = qseqid.split("_")[:-3:-1]
+        qchrom = qseqid.split("_chr")[0]
+        qgstart, qgend = qseqid.split("_")[-3:-1]
         if qchrom == sseqid and int(qgstart) <= int(sstart) and int(qgend) >= int(send): continue
         if float(pident) >= ident and float(qcovs) >= cov and float(evalue) < Evalue:
             aDict.setdefault(sseqid, []).append([sseqid, int(sstart), int(send), strand, float(bitscore)])
