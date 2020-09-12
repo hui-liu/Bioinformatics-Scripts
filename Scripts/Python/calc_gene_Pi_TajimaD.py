@@ -46,6 +46,7 @@ gene_Pi = N_mismatches / N_pairs
 """
 # hui.liu@umu.se/liuhui.bfu@gmail.com
 # calculate Pi and Tajima's D for a single gene
+# usage: python calc_gene_Pi_TajimaD.py Potra2n1c1.vcf.gz Potra2n1c1 ../annotation/Potra02_chr_intron.gff3
 
 import sys
 from math import sqrt
