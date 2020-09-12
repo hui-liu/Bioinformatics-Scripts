@@ -44,6 +44,8 @@ N_pairs = N_variant_site_pairs + (N_monomorphic_sites * N_comparisons)
 N_mismatches = sum(AC * (AN - AC) + (AN-AC) * AC)
 gene_Pi = N_mismatches / N_pairs
 """
+# hui.liu@umu.se/liuhui.bfu@gmail.com
+# calculate Pi and Tajima's D for a single gene
 
 import sys
 from math import sqrt
