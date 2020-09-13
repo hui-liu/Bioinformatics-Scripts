@@ -210,11 +210,6 @@ gene_length_dict = geneLen(sys.argv[3])
 gene_length = gene_length_dict[geneid]
 N_chr = N_indvs * 2
 
-#test the --window-pi of vcftools
-res = vcftools_window_pi(AC, AN, pos, N_chr)
-for i in res:
-    print i
-
 gene_Pi = win_Pi(AC, AN, N_chr, gene_length)
 gene_tajamdD = TajimaD(AC, AN, N_chr)
 
