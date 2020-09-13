@@ -1,4 +1,3 @@
-
 """
 http://codextechnicanum.blogspot.com/2016/11/nucleotide-diversity-pi-or-pi.html
 https://github.com/vcftools/vcftools/blob/f7aee6d26885064d834199052573e31338240b76/src/cpp/variant_file_output.cpp
@@ -52,6 +51,13 @@ import sys
 import math
 import gzip
 
+# usage
+USAGE = "usage: python transposition_v2.py [geneid.vcf.gz] [geneid] [gff3 file]"
+
+if len(sys.argv) !=3:
+    print USAGE
+    sys.exit()
+
 def parseVCF(file):
     AC = [] # allele count for each SNP
     AN = [] # allele number for each SNP
@@ -65,7 +71,6 @@ def parseVCF(file):
                 if lsp[0] == "#CHROM":
                     N_indvs = (len(lsp) - 9)
                 else:
-                    pos.append(int(lsp[1]))
                     REF, ALT = lsp[3], lsp[4]
                     if "," in REF or "," in ALT: continue
                     alleles = [x.split(":")[0] for x in lsp[9:]]
@@ -75,11 +80,13 @@ def parseVCF(file):
                     ac = alt * 2 + het
                     an = 2 * (ref + alt + het)
                     #mis = 2 * N_indvs - an
-                    if ref == N_indvs:
+                    alleles_no_missing = [i for i in alleles if i != "./."]
+                    if len(set(alleles_no_missing)) ==1:
                         continue
                     else:
                         AC.append(ac)
                         AN.append(an)
+                        pos.append(int(lsp[1]))
     return pos, AC, AN, N_indvs
 
 def parseGFF(file):
@@ -204,15 +211,15 @@ gene_length = gene_length_dict[geneid]
 N_chr = N_indvs * 2
 
 #test the --window-pi of vcftools
-#res = vcftools_window_pi(AC, AN, pos, N_chr)
-#for i in res:
-#    print i
+res = vcftools_window_pi(AC, AN, pos, N_chr)
+for i in res:
+    print i
 
 gene_Pi = win_Pi(AC, AN, N_chr, gene_length)
 gene_tajamdD = TajimaD(AC, AN, N_chr)
 
 out = open(geneid + ".tsv", "w")
-out.write("\t".join(["geneid", "Pi", "TajimaD"]) + "\n")
-out.write("\t".join([geneid, str(gene_Pi), str(gene_tajamdD)]) + "\n")
+out.write("\t".join(["geneid", "N_SNPS", "Pi", "TajimaD"]) + "\n")
+out.write("\t".join([geneid, str(len(AN)), str(gene_Pi), str(gene_tajamdD)]) + "\n")
 
 out.close()
