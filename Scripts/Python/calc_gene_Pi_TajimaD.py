@@ -52,9 +52,9 @@ import math
 import gzip
 
 # usage
-USAGE = "usage: python transposition_v2.py [geneid.vcf.gz] [geneid] [gff3 file]"
+USAGE = "usage: python %s [geneid.vcf.gz] [geneid] [gff3 file]" % sys.argv[0]
 
-if len(sys.argv) !=3:
+if len(sys.argv) !=4:
     print USAGE
     sys.exit()
 
