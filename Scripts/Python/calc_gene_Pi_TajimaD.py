@@ -210,11 +210,13 @@ gene_length_dict = geneLen(sys.argv[3])
 gene_length = gene_length_dict[geneid]
 N_chr = N_indvs * 2
 
-gene_Pi = win_Pi(AC, AN, N_chr, gene_length)
-gene_tajamdD = TajimaD(AC, AN, N_chr)
-
+# output
 out = open(geneid + ".tsv", "w")
 out.write("\t".join(["geneid", "N_SNPS", "Pi", "TajimaD"]) + "\n")
-out.write("\t".join([geneid, str(len(AN)), str(gene_Pi), str(gene_tajamdD)]) + "\n")
-
+if len(AN) > 0:
+    gene_Pi = win_Pi(AC, AN, N_chr, gene_length)
+    gene_tajamdD = TajimaD(AC, AN, N_chr)
+    out.write("\t".join([geneid, str(len(AN)), str(gene_Pi), str(gene_tajamdD)]) + "\n")
+else:
+    out.write("\t".join([geneid, str(len(AN)), 'NA', 'NA']) + "\n")
 out.close()
