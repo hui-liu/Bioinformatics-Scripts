@@ -89,19 +89,6 @@ def parseVCF(file):
                         pos.append(int(lsp[1]))
     return pos, AC, AN, N_indvs
 
-def parseGFF(file):
-    res = {}
-    with open(file, 'r') as f:
-        for line in f:
-            if line[0] == "#": continue
-            lsp = line.split()
-            if lsp[2] == "gene":
-                geneid = lsp[8].split(";")[0].split("=")[1]
-                chr, start, end = lsp[0], int(lsp[3]), int(lsp[4])
-                res.setdefault(chr, []).append([geneid, start, end])
-    return res
-
-
 def geneLen(file):
     res = {}
     with open(file) as f:
@@ -131,9 +118,8 @@ def site_Pi(AC, AN, pos):
         site_Pi.append(pos[i]+[pi])
     return site_Pi
 
-def vcftools_window_pi(AC, AN, pos, N_chr):
+def vcftools_window_pi(AC, AN, pos, N_chr, win):
     # test the --window-pi of vcftools for a single gene
-    win = 10000
     START = int(math.floor(pos[0] / float(win))) * win
     END = int(math.ceil(pos[-1] / float(win))) * win
     window_pi_calc = [[i+1, i+win, [], [], []] for i in range(START, END, win)]
@@ -143,12 +129,12 @@ def vcftools_window_pi(AC, AN, pos, N_chr):
                 j[2].append(x)
                 j[3].append(AC[i])
                 j[4].append(AN[i])
-    window_pi = []
+    window_Pi = []
     for i in window_pi_calc:
         N_VARIANTS = len(i[2])
         PI = win_Pi(i[3], i[4], N_chr, win)
-        window_pi.append([i[0], i[1], N_VARIANTS, PI])
-    return window_pi
+        window_Pi.append([i[0], i[1], N_VARIANTS, PI])
+    return window_Pi
 
 
 def win_Pi(AC, AN, N_chr, win):
@@ -169,7 +155,7 @@ def win_Pi(AC, AN, N_chr, win):
     Pi = N_mismatches / float(N_pairs)
     return Pi
 
-def calc_piqi(AC, AN):
+def calc_pi(AC, AN, n):
     # https://genome.cshlp.org/content/15/11/1553.full#sec-4
     piqi = 0.0 # pi is the derived (nonancestral) allele frequency of the ith SNP
     for i, x in enumerate(AC):
@@ -178,7 +164,7 @@ def calc_piqi(AC, AN):
         qi = 1.0-pi
         piqi += pi * qi
 
-    pi = 2 * piqi*N_chr/(N_chr-1.0)
+    pi = 2 * piqi* n /(n-1.0)
     return pi
 
 def TajimaD(AC, AN, n):
@@ -196,7 +182,7 @@ def TajimaD(AC, AN, n):
     e1 = c1 / a1
     e2 = c2 / ((a1*a1) + a2)
     S = len(AN)
-    pi = calc_piqi(AC, AN)
+    pi = calc_pi(AC, AN, n)
     tw = (S/a1)
     var = float(e1*S) + (e2*S*(S-1))
     D  = (pi - tw) / math.sqrt(var)
