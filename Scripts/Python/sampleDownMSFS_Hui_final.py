@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 ### This script has been written by Qixin He (University of Michigan, heqixin@umich.edu)
-### Modified by Hui Liu and Wei Zhao (zhao.we@umu.se) 20201017
+### Modified by Hui Liu (liuhui@bjfu.edu.cn) and Wei Zhao (zhao.we@umu.se) 20201017
 ###
 ###read in the ancestral state of snps
 ###read in included individuals
