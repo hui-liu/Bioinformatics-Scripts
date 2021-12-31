@@ -130,8 +130,6 @@ cds_dict = parseFasta(sys.argv[3])
 pep_aln = []
 for i in res:
     chr, start, end, strand, query, query_start, query_end, query_len, frac, num_of_ins, num_of_dels, num_of_shifts, num_of_stops, expect, ident, polya, pseudogene_coors, query_coors, q_strand, seq1,  seq2= res[i]
-    #pseudogene_seq = "".join([get_seq(genome_dict, chr, s, e, strand) for s,e in pseudogene_coors])
-    #cds_seq = "".join([cds_dict[query][s*3-3: e*3] for s,e in query_coors])
     if num_of_shifts > 0: continue
     if num_of_stops > 0: continue
     if q_strand == "+":
@@ -166,4 +164,3 @@ OUT = open(sys.argv[4], 'w')
 for i in pep_aln:
     x, y, z = i
     OUT.write(x + "\n" + y + "\n" + z + "\n\n")
-
