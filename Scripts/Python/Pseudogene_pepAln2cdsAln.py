@@ -129,19 +129,19 @@ cds_dict = parseFasta(sys.argv[3])
 pep_aln = []
 for i in res:
     chr, start, end, strand, query, query_start, query_end, query_len, frac, num_of_ins, num_of_dels, num_of_shifts, num_of_stops, expect, ident, polya, pseudogene_coors, query_coors, q_strand, seq1,  seq2= res[i]
-    #pseudogene_seq = "".join([get_seq(genome_dict, chr, s, e, strand) for s,e in pseudogene_coors])
-    #cds_seq = "".join([cds_dict[query][s*3-3: e*3] for s,e in query_coors])
     if num_of_shifts > 0: continue
     if num_of_stops > 0: continue
     if q_strand == "+":
         cds_seq = ""
         for index, x in enumerate(query_coors):
-            codon_aln = pal2nal(seq1.split()[index], get_seq(cds_dict, query, x[0]*3-3+1, x[1]*3, q_strand))
+            #codon_aln = pal2nal(seq1.split()[index], get_seq(cds_dict, query, x[0]*3-3+1, x[1]*3, q_strand))
+            codon_aln = pal2nal(seq1.split()[index], cds_dict[query][x[0]*3-3: x[1]*3])
             cds_seq += codon_aln
     else:
         cds_seq = ""
         for index, x in enumerate(query_coors[::-1]):
-            codon_aln = pal2nal(seq1.split()[index], get_seq(cds_dict, query, x[0]*3-3+1, x[1]*3, q_strand))
+            codon_aln = pal2nal(seq1.split()[index], cds_dict[query][x[0]*3-3: x[1]*3])
+            #codon_aln = pal2nal(seq1.split()[index], get_seq(cds_dict, query, x[0]*3-3+1, x[1]*3, q_strand))
             cds_seq += codon_aln
     if strand == "+":
         pseudogene_seq = ""
@@ -154,7 +154,7 @@ for i in res:
             codon_aln = pal2nal(seq2.split()[index], get_seq(genome_dict, chr, x[0], x[1], strand))
             pseudogene_seq += codon_aln
     pep_aln.append([i, cds_seq, pseudogene_seq])
-    #print ">" + i
+    #print ">" + i + q_strand
     #print seq1
     #print seq2
     #print cds_seq
