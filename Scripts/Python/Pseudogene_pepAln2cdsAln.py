@@ -34,52 +34,30 @@ def parseFasta(filename):
             fas[id] = ''.join(seq)
     return fas
 
-complement_table = {
-'A': 'T',
-'B': 'V',
-'C': 'G',
-'D': 'H',
-'G': 'C',
-'H': 'D',
-'K': 'M',
-'M': 'K',
-'N': 'N',
-'R': 'Y',
-'S': 'S',
-'T': 'A',
-'U': 'A',
-'V': 'B',
-'W': 'W',
-'X': 'X',
-'Y': 'R',
-'a': 't',
-'b': 'v',
-'c': 'g',
-'d': 'h',
-'g': 'c',
-'h': 'd',
-'k': 'm',
-'m': 'k',
-'n': 'n',
-'r': 'y',
-'s': 's',
-'t': 'a',
-'u': 'a',
-'v': 'b',
-'w': 'w',
-'x': 'x',
-'y': 'r'
-}
-
-
-def rev_comp(seq):
-    new_seq = []
-    line = seq.rstrip()
-    for letter in line:
-        complement_letter = complement_table[letter]
-        new_seq.append(complement_letter)
-    new_seq.reverse()
-    return "".join(new_seq)
+def reverse_comp(sequence):
+    comp_dict = {
+        'A': 'T',
+        'B': 'V',
+        'C': 'G',
+        'D': 'H',
+        'G': 'C',
+        'H': 'D',
+        'M': 'K',
+        'N': 'N',
+        'R': 'Y',
+        'S': 'S',
+        'T': 'A',
+        'U': 'A',
+        'V': 'B',
+        'W': 'W',
+        'X': 'X',
+        'Y': 'R'}
+    #comp_dict = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C', '-': '-', 'N': 'N'}
+    sequence = sequence.upper()
+    sequence_rev = ''
+    for i in range(1, len(sequence)+1):
+        sequence_rev += comp_dict[sequence[-i]]
+    return sequence_rev
 
 def get_seq(seq_dict, chr, start, end, strand):
     # samtools faidx genome.fasta chr:start-end
