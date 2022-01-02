@@ -34,7 +34,7 @@ def parseFasta(filename):
             fas[id] = ''.join(seq)
     return fas
 
-def reverse_comp(sequence):
+def rev_comp(sequence):
     comp_dict = {
         'A': 'T',
         'B': 'V',
