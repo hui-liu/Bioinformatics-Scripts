@@ -143,3 +143,5 @@ OUT = open(sys.argv[4], 'w')
 for i in pep_aln:
     x, y, z = i
     OUT.write(x + "\n" + y + "\n" + z + "\n\n")
+
+OUT.close()
