@@ -86,6 +86,7 @@ for chr in genome:
     for item in ids_dict[chr]:
         id, strand = item
         cds_info = cds_info_dict[id]
+        cds_info = sorted(cds_info, key=lambda x: x[2])
         cds_seq = getCDS(cds_info, ref_seq)
         print ">" + id
         print cds_seq
