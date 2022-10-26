@@ -90,11 +90,15 @@ clusters.sort(key = lambda x: (filter(lambda x: x.isalpha(), x[1][2]), int(re.fi
 
 # output
 OUT = open(sys.argv[3], 'w')
-num = 0
+m = 0
+n = 0
 for cluster in clusters:
-    num += 1
-    #cluster.sort(key = lambda x: x[1])
-    for lis in cluster:
-        ID = "pair_" + str(num)
-        OUT.write(lis[0] + "\t" + ID + "\t" + "\t".join(map(str, genes_info[lis[0]])) + "\t" + NLR_genes[lis[0]][5] + "\n")
+    m += 1
+    ID = "cluster_" + str(m)
+    pairs = zip(cluster, cluster[1:])
+    for pair in pairs:
+        n += 1
+        for lis in pair:
+            ID2 = "pair_" + str(n)
+            OUT.write(lis[0] + "\t" + ID2 + "\t" + "\t".join(map(str, genes_info[lis[0]])) + "\t" + NLR_genes[lis[0]][5] + "\n")
 OUT.close()
